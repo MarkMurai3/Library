@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js.js"></script>
+    <script src="js.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,10 +33,10 @@
                 </tr>
             </table>
         </div>
-        <button class="newBook" value="New Book">New Book</button>
+        <button id="newBookbtn" class="newBook">New Book</button>
     </div>
     <div class="image"></div>
-    <div class="popUp">
+    <div class="popUp" id="popUpID">
         <div class="popUpContent">
             <p>Please fill out this form, then press Submit!</p>
             <form action="#" method="get">
@@ -56,7 +56,7 @@
                     <label for="read">Have you read it or not:</label>
                     <input type="checkbox" name="read" id="read">
                 </div>
-                <button type="submit">Submit</button>
+                <button id="submitID" type="submit">Submit</button>
             </form>
         </div>
     </div>
