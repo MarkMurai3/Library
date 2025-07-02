@@ -1,29 +1,130 @@
-body{
-    /* background-color: antiquewhite; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-}
-
-.tables{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 :root{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+    --bgBrown: rgb(131, 100, 100);
+    --whiteVar: white;
+    --accentTeal: rgb(0, 194, 194);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+
 
 table, th, td {
     border: 1px solid black;
+    padding: 0.5em;
+    background-color: var(--whiteVar);
+    font-family: "Source Serif 4", sans-serif, serif;
+    background-color:antiquewhite;
+
 }
 
-td, th{
-    padding: 10px;
+.theTable{
+    margin: 50px;
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.hero-text{
+    color: var(--whiteVar);
+    font-family: "Source Serif 4", sans-serif, serif;
+    font-size: 3em;
+}
+
+.hero-text span{
+    color: var(--accentTeal);
+}
+
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    /* background-image: url; */
+    background-color: var(--bgBrown);
+}
+
+.library{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    flex-direction: column;
+}
+
+.newBook{
+    background-color: var(--accentTeal);
+    border: 0;
+    /* color: var(--whiteVar); */
+    /* color: #C20000; */
+    height: 4em;
+    width: 8em;
+    font-size: larger;
+    font-family: "Source  Serif 4", sans-serif, serif;
+    font-weight: bold;
+}
+
+.image{
+    background-image: url("images/24f01553babc156a4071ed35a6014d7d.jpg");
+    background-size:cover;
+    width: 50%;
+    height: 100%;
+}
+
+.popUp{
+    display: none;
+    /* display: block; */
+
+    top: 20%;
+    left: 20%;
+    position: fixed;
+    z-index: 1;
+    overflow: auto;
+    height: 60vh;
+    width: 60vw;
+}
+
+.popUpContent{
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+
+}
+
+.popUpContent > p {
+    font-family: "Source  Serif 4", sans-serif, serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-left: 20px;
+}
+
+.form-part {
+    margin: 20px;
+    margin-top: 50px
+}
+
+form label{
+    font-size: 2em;
+    /* font-family: "Source  Serif 4", sans-serif, serif; */
+}
+
+form input[type="text"], form input[type="number"]{
+    font-size: 1.5em;
+    width: 50%;
+}
+
+form input[type="checkbox"]{
+    height: 2em;
+}
+
+form > button[type="submit"]{
+    margin-left: 20px;
+    background-color: var(--accentTeal);
+    border: 0;
+    height: 4em;
+    width: 8em;
+    font-size: larger;
+    font-family: "Source  Serif 4", sans-serif, serif;
+    font-weight: bold;
 }

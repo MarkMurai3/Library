@@ -5,55 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js.js" defer></script>
+    <script src="js.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div class="data-entry">
-        <h1>Library Data Entry Point</h1>
-        <div class="form">
-            <form action="#" method="post" id="bookinfos">
-                <p>
+    <div class="library">
+        <h1 class="hero-text">Your Own Personal <span>Library</span></h1>
+        <div class="theTable">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Read it or not</th>
+                    <th>Delete from list</th>
+                </tr>
+                <tr>
+                    <td>Example Title</td>
+                    <td>Example Author</td>
+                    <td>Example Pages</td>
+                    <td>Example Read</td>
+                    <td>Example Delete</td>
+                </tr>
+            </table>
+        </div>
+        <button class="newBook" value="New Book">New Book</button>
+    </div>
+    <div class="image"></div>
+    <div class="popUp">
+        <div class="popUpContent">
+            <p>Please fill out this form, then press Submit!</p>
+            <form action="#" method="get">
+                <div class="form-part">
                     <label for="title">Title:</label>
-                    <input type="text" id="title" name="book-title" required> 
-                </p>
-                <p>
+                    <input id="title" type="text">
+                </div>
+                <div class="form-part">
                     <label for="author">Author:</label>
-                    <input type="text" id="author" name="book-author" required>
-                </p>
-                <p>
+                    <input id="author" type="text">
+                </div>
+                <div class="form-part">
                     <label for="pages">Number of Pages:</label>
-                    <input type="number" id="pages" name="num-pages" required>
-                </p>
-                <p>
-                    <label for="read">Have you read it?</label>
-                    <input type="checkbox" id="read" name="been-read">
-                </p>
+                    <input id="pages" type="number">
+                </div>
+                <div class="form-part">
+                    <label for="read">Have you read it or not:</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
-        <div class="send">
-            <button type="submit" id="submit">Submit</button>
-            <button type="reset" id="reset">Reset</button>
-        </div>
     </div>
-    <div class="tables" style="width:100%">
-        <p>Your Library</p>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Number of Pages</th>
-                <th>Have you read it?</th>
-                <th>Edit</th>
-            </tr>
-            <tr>
-                <td>The Hobbit</td>
-                <td>J.R.R Tolkien</td>
-                <td>295</td>
-                <td>Not read yet <button>Toggle</button> </td>
-                <td><button type="button">Delete</button></td>
-            </tr>
-        </table>
-    </div>
-    <button>New Book</button>
+
 </body>
 </html>
