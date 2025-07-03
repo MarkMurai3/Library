@@ -101,10 +101,11 @@ body{
     flex-direction: column;
     height: 100%;
     justify-content: center;
+    padding: 0 20px;
 
 }
 
-.popUpContent > p {
+.modal > p {
     font-family: "Source  Serif 4", sans-serif, serif;
     font-weight: bold;
     font-size: 1.5em;
@@ -139,6 +140,7 @@ form > button[type="submit"]{
     font-size: larger;
     font-family: "Source  Serif 4", sans-serif, serif;
     font-weight: bold;
+    /* border-radius: 20px; */
 }
 
 form > button[type="submit"]:hover {
@@ -149,4 +151,18 @@ form > button[type="submit"]:hover {
 form > button[type="submit"]:active{
     background-color: var(--accentActive);
     color:var(--whiteVar);
+}
+
+.close {
+    color: #777777;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.close:hover, .close:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
