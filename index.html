@@ -24,7 +24,7 @@
                     <th>Read it or not</th>
                     <th>Delete from list</th>
                 </tr>
-                <tr>
+                <tr data-id="ExampleId">
                     <td>Example Title</td>
                     <td>Example Author</td>
                     <td>Example Pages</td>
@@ -32,6 +32,7 @@
                     <td>Example Delete</td>
                 </tr>
             </table>
+            <p id="log"></p>
         </div>
         <button id="newBookbtn" class="newBook">New Book</button>
     </div>
@@ -42,10 +43,10 @@
                 <span id="close" class="close">&times;</span>
                 <p>Please fill out this form, then press Submit!</p>
             </div>
-            <form action="#" method="get">
+            <form id="bookForm" action="#" method="post" onsubmit="return saveData()">
                 <div class="form-part">
                     <label for="title">Title:</label>
-                    <input id="title" type="text">
+                    <input id="title" type="text"> 
                 </div>
                 <div class="form-part">
                     <label for="author">Author:</label>
@@ -57,7 +58,10 @@
                 </div>
                 <div class="form-part">
                     <label for="read">Have you read it or not:</label>
-                    <input type="checkbox" name="read" id="read">
+                    <input type="radio" name="read" id="yes" value="Yes">
+                    <label for="read">Yes</label>
+                    <input type="radio" name="read" id="no" value="No">
+                    <label for="read">No</label>
                 </div>
                 <button id="submitID" type="submit">Submit</button>
             </form>
