@@ -5,6 +5,8 @@ const submitBtn = document.getElementById("submitID");
 const closeBtn = document.getElementById("close");
 const form = document.getElementById("bookForm");
 const log = document.getElementById("log");
+const table = document.querySelector("tbody");
+
 
 newBookBtn.onclick = function (){
     popUp.style.display = "block";
@@ -28,22 +30,12 @@ closeBtn.onclick = function(){
 
 const myLibrary = [];
 
-function saveData(){
-    const params = []
-    var title = document.getElementById("title").value;
-    var author = document.getElementById("author").value;
-    var pages = document.getElementById("pages").value;
-    var read = document.querySelector('input[name="read"]:checked').value;
-    params.push(title, author, pages, read);
-
-    // console.log(params);
-    return params;
-}
-
+// We should make sure that the Submit button doesn't function unless all the inputs have been answered
 
 form.addEventListener("submit", function (e){
     e.preventDefault();
     addBookToLibrary();
+
 });
 
 Book.prototype.toggle = function(){
@@ -70,20 +62,74 @@ function Book(title, author, pages, read, id){
 
 
 function addBookToLibrary(){
-    const title = saveData()[0];
-    const author = saveData()[1];
-    const pages = saveData()[2];
-    const read = saveData()[3];
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var pages = document.getElementById("pages").value;
+    var read = document.querySelector('input[name="read"]:checked').value;
     const id = crypto.randomUUID();
 
     let newBook = new Book(title, author, pages, read, id);
     myLibrary.push(newBook);
     updateTable();
+    var title = document.getElementById("title").value = "";
+    var author = document.getElementById("author").value = "";
+    var pages = document.getElementById("pages").value = "";
+    var read = document.querySelector('input[name="read"]').checked = false;
 }
 
+
 function updateTable(){
-    //Update the table
+    deleteTable();
+    for (const book of myLibrary){
+        console.log(book.title);
+
+        const tr = document.createElement("tr");
+        table.appendChild(tr);
+
+        for(let i = 0;i <= 4; i++){
+            const td = document.createElement("td");
+            let textNode = "";
+            switch(i){
+                case 0:
+                    textNode = document.createTextNode(book.title);
+                    td.appendChild(textNode);
+                    break;
+                case 1:
+                    textNode = document.createTextNode(book.author);
+                    td.appendChild(textNode);
+                    break;
+                case 2: 
+                    textNode = document.createTextNode(book.pages);
+                    td.appendChild(textNode);
+                    break;
+                case 3:
+                    textNode = document.createTextNode(book.read);
+                    
+                    td.appendChild(textNode);
+                    break;
+                case 4:
+                    textNode = document.createTextNode("Delete");
+                    td.appendChild(textNode);
+                    break;
+                default:
+                    console.log("Something went wrong with the switch statement");
+                    break;
+            }
+            tr.appendChild(td);
+        }
+
+        // const td = document.createElement("td");
+        // tr.appendChild(td);
+    }
 }
+
+function deleteTable(){
+    while (table.hasChildNodes()){
+        table.removeChild(table.lastChild);
+    }
+}
+
+// element.deleteRow(n) for the delete button
 
 //When pressing Submit a new Book object will be created with its ID. crypto.randomUUID()
 //The new object will be placed in the Library array

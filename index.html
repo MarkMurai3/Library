@@ -17,6 +17,7 @@
         <h1 class="hero-text">Your Own Personal <span>Library</span></h1>
         <div class="theTable">
             <table>
+                <thead>
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
@@ -24,13 +25,16 @@
                     <th>Read it or not</th>
                     <th>Delete from list</th>
                 </tr>
-                <tr data-id="ExampleId">
+                </thead>
+                <tbody>
+              <!-- <tr data-id="ExampleId">
                     <td>Example Title</td>
                     <td>Example Author</td>
                     <td>Example Pages</td>
                     <td>Example Read</td>
-                    <td>Example Delete</td>
-                </tr>
+                    <td>Example Delete</td> -->
+                <!-- </tr> -->  
+                </tbody>
             </table>
             <p id="log"></p>
         </div>
@@ -43,24 +47,24 @@
                 <span id="close" class="close">&times;</span>
                 <p>Please fill out this form, then press Submit!</p>
             </div>
-            <form id="bookForm" action="#" method="post" onsubmit="return saveData()">
+            <form id="bookForm" action="#" method="post">
                 <div class="form-part">
                     <label for="title">Title:</label>
-                    <input id="title" type="text"> 
+                    <input id="title" type="text" required> 
                 </div>
                 <div class="form-part">
                     <label for="author">Author:</label>
-                    <input id="author" type="text">
+                    <input id="author" type="text" required>
                 </div>
                 <div class="form-part">
                     <label for="pages">Number of Pages:</label>
-                    <input id="pages" type="number">
+                    <input id="pages" type="number" required>
                 </div>
                 <div class="form-part">
                     <label for="read">Have you read it or not:</label>
-                    <input type="radio" name="read" id="yes" value="Yes">
+                    <input type="radio" name="read" id="yes" value="Yes" required>
                     <label for="read">Yes</label>
-                    <input type="radio" name="read" id="no" value="No">
+                    <input type="radio" name="read" id="no" value="No" required>
                     <label for="read">No</label>
                 </div>
                 <button id="submitID" type="submit">Submit</button>
