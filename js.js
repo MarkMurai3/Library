@@ -6,6 +6,7 @@ const closeBtn = document.getElementById("close");
 const form = document.getElementById("bookForm");
 const log = document.getElementById("log");
 const table = document.querySelector("tbody");
+const radioButtons = document.getElementById("radioButtons");
 
 
 newBookBtn.onclick = function (){
@@ -53,7 +54,6 @@ Book.prototype.toggle = function(){
         this.read = "Yes";
     }
     updateTable();
-    console.log("Toggle has been done");
 } 
 
 function addBookToLibrary(){
@@ -65,34 +65,19 @@ function addBookToLibrary(){
 
     const newBook = new Book(title, author, pages, read, id);
 
-    //So the problem for the toggle is that when this gets sent to the array 
-    //the name assigned here is nowhere to be found in the library. It is shown as
-    //[Book]. 
-
-    //For the delete button if we combine the id and the data attribute somehow
-    //then we can cook something
-
-    //Also change HOWTHEFUCKDOIDOTHIS back lol
-
-    // myLibrary[0].toggle()
-    //THIS WORKED! in the console at least
-
     myLibrary.push(newBook);
     updateTable();
     var title = document.getElementById("title").value = "";
     var author = document.getElementById("author").value = "";
     var pages = document.getElementById("pages").value = "";
-    var read = document.querySelector('input[name="read"]').checked = false;
-    // console.log(newBook);
-    // console.log(newBook.prototype);
-    // newBook.toggle();
+    var readNo = document.querySelector('input[id="no"]').checked = false;
+    var readYes = document.querySelector('input[id="yes"]').checked = false;
 }
 
 
 function updateTable(){
     deleteTable();
     for (const book of myLibrary){
-        // console.log(book.title);
 
         const tr = document.createElement("tr");
         table.appendChild(tr);
@@ -120,7 +105,6 @@ function updateTable(){
                     toggleRead.className = "read";
                     toggleRead.id = "readID";
                     toggleRead.appendChild(toggleText);
-                    // toggleRead.prototype
 
                     td.appendChild(textNode);
                     td.appendChild(toggleRead);
@@ -135,6 +119,17 @@ function updateTable(){
                     deleteBtn.className = "delete";
                     deleteBtn.appendChild(btnTextNode);
                     td.appendChild(deleteBtn);
+                    const a = document.createAttribute("data-id");
+                    a.value = book.id;
+                    
+                    deleteBtn.setAttributeNode(a);
+                    deleteBtn.onclick = () =>{
+                        if(a.value == book.id){
+                            findAndDeleteObject(a.value);
+                            updateTable();
+                        }
+                    }
+
                     break;
                 default:
                     console.log("Something went wrong with the switch statement");
@@ -145,39 +140,20 @@ function updateTable(){
     }
 }
 
+function findAndDeleteObject(e){
+    for(let i=0;i < myLibrary.length; i++){
+        if (myLibrary[i].id == e){
+            myLibrary.splice(i,1);
+        }
+    }
+    
+}
+
 function deleteTable(){
     while (table.hasChildNodes()){
         table.removeChild(table.lastChild);
     }
 }
 
-
-
-//TEST 
-let testToggleID = document.getElementById("readID");
-let testToggle = document.getElementsByClassName("read");
-// testToggle.onclick = (e) => {
-//     console.log("cjecne");
-// }
-// testToggle.addEventListener("click", (e) => {
-//     console.log("rvejkn");
-// }
-
-
-
-
-
-// const toggleRead = document.getElementsByClassName("read");
-// toggleRead.onclick = 
-
 // We should make sure that the Submit button doesn't function unless all the inputs have been answered
-
-// element.deleteRow(n) for the delete button
-
-//When pressing Submit a new Book object will be created with its ID. crypto.randomUUID()
-//The new object will be placed in the Library array
-//A loop that would update the table will run
-
-//For when the submit input tries to send the data to a server use event.preventDefault();
-//Add a delete button for each book. Give them data-attribute that corresponds to the unique id of the respective book
-//To change its read status create a Book prototype function that toggles it
+// The "No" radio button stays active after pressing Submit

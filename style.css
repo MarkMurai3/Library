@@ -117,7 +117,7 @@ body{
     margin-top: 50px
 }
 
-form label{
+form label, .form-part >p{
     font-size: 2em;
     /* font-family: "Source  Serif 4", sans-serif, serif; */
 }
@@ -142,6 +142,7 @@ form > button[type="submit"]{
     font-weight: bold;
     /* border-radius: 20px; */
 }
+
 
 form > button[type="submit"]:hover {
     background-color: var(--accentHover);
