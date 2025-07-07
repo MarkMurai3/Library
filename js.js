@@ -26,11 +26,7 @@ closeBtn.onclick = function(){
     popUp.style.display = "none";
 }
 
-
-
 const myLibrary = [];
-
-// We should make sure that the Submit button doesn't function unless all the inputs have been answered
 
 form.addEventListener("submit", function (e){
     e.preventDefault();
@@ -38,16 +34,6 @@ form.addEventListener("submit", function (e){
 
 });
 
-Book.prototype.toggle = function(){
-    if (this.read == "Yes") {
-        this.read = "No";
-    } else if (this.read == "No") {
-        this.read = "Yes";
-    }
-    console.log("Toggle has been done");
-} //It works fine on the console if I make a new object there and apply the toggle prototype there.
-//But here it isn't working and idk why. Maybe the ID would help
-//Maybe this is where the data-attribute comes to play but that's for the delete option
 
 function Book(title, author, pages, read, id){
     if (!new.target) {
@@ -60,6 +46,15 @@ function Book(title, author, pages, read, id){
     this.id = id;
 }
 
+Book.prototype.toggle = function(){
+    if (this.read == "Yes") {
+        this.read = "No";
+    } else if (this.read == "No") {
+        this.read = "Yes";
+    }
+    updateTable();
+    console.log("Toggle has been done");
+} 
 
 function addBookToLibrary(){
     var title = document.getElementById("title").value;
@@ -68,20 +63,36 @@ function addBookToLibrary(){
     var read = document.querySelector('input[name="read"]:checked').value;
     const id = crypto.randomUUID();
 
-    let newBook = new Book(title, author, pages, read, id);
+    const newBook = new Book(title, author, pages, read, id);
+
+    //So the problem for the toggle is that when this gets sent to the array 
+    //the name assigned here is nowhere to be found in the library. It is shown as
+    //[Book]. 
+
+    //For the delete button if we combine the id and the data attribute somehow
+    //then we can cook something
+
+    //Also change HOWTHEFUCKDOIDOTHIS back lol
+
+    // myLibrary[0].toggle()
+    //THIS WORKED! in the console at least
+
     myLibrary.push(newBook);
     updateTable();
     var title = document.getElementById("title").value = "";
     var author = document.getElementById("author").value = "";
     var pages = document.getElementById("pages").value = "";
     var read = document.querySelector('input[name="read"]').checked = false;
+    // console.log(newBook);
+    // console.log(newBook.prototype);
+    // newBook.toggle();
 }
 
 
 function updateTable(){
     deleteTable();
     for (const book of myLibrary){
-        console.log(book.title);
+        // console.log(book.title);
 
         const tr = document.createElement("tr");
         table.appendChild(tr);
@@ -104,12 +115,26 @@ function updateTable(){
                     break;
                 case 3:
                     textNode = document.createTextNode(book.read);
-                    
+                    const toggleRead = document.createElement("button");
+                    const toggleText = document.createTextNode("Toggle");
+                    toggleRead.className = "read";
+                    toggleRead.id = "readID";
+                    toggleRead.appendChild(toggleText);
+                    // toggleRead.prototype
+
                     td.appendChild(textNode);
+                    td.appendChild(toggleRead);
+                    toggleRead.onclick = () =>{
+                        book.toggle();
+                    }
                     break;
                 case 4:
                     textNode = document.createTextNode("Delete");
-                    td.appendChild(textNode);
+                    const deleteBtn = document.createElement("button");
+                    const btnTextNode = document.createTextNode("Delete");
+                    deleteBtn.className = "delete";
+                    deleteBtn.appendChild(btnTextNode);
+                    td.appendChild(deleteBtn);
                     break;
                 default:
                     console.log("Something went wrong with the switch statement");
@@ -117,9 +142,6 @@ function updateTable(){
             }
             tr.appendChild(td);
         }
-
-        // const td = document.createElement("td");
-        // tr.appendChild(td);
     }
 }
 
@@ -128,6 +150,27 @@ function deleteTable(){
         table.removeChild(table.lastChild);
     }
 }
+
+
+
+//TEST 
+let testToggleID = document.getElementById("readID");
+let testToggle = document.getElementsByClassName("read");
+// testToggle.onclick = (e) => {
+//     console.log("cjecne");
+// }
+// testToggle.addEventListener("click", (e) => {
+//     console.log("rvejkn");
+// }
+
+
+
+
+
+// const toggleRead = document.getElementsByClassName("read");
+// toggleRead.onclick = 
+
+// We should make sure that the Submit button doesn't function unless all the inputs have been answered
 
 // element.deleteRow(n) for the delete button
 
